@@ -1,4 +1,6 @@
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
 const User = require('../models/user');
 
 //inscription
@@ -37,7 +39,15 @@ exports.login = (req, res, next) => {
                     res.status(200).json({
                         //Vu que tout est bon ont lui envoie sont userId et un token(qui deviendra le token d'authentification)
                         userId: user._id,
-                        token: 'TOKEN'
+                        //ont utilise la méthode sign de jsonwebtoken pour encoder un nouveau token
+                        token: jwt.sign(
+                            //ce token contient l'ID de l'utilisateur en tant que payload (les données encodées dans le token)
+                            { userId: user._id },
+                            //ont utilise une chaîne secrète de développement temporaire RANDOM_SECRET_KEY pour encoder notre token (à remplacer par une chaîne aléatoire beaucoup plus longue pour la production)
+                            'RANDOM_TOKEN_SECRET',
+                            //ont défini la durée de validité du token à 24 heures. L'utilisateur devra donc se reconnecter au bout de 24 heures
+                            {expiresIn: '24h'}
+                        )
                     });
                 })
                 .catch(error => res.status(500).json({ error}));

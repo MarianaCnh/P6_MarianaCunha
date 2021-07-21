@@ -1,4 +1,6 @@
 const Sauce = require('../models/sauces');
+//file system pour donné accès aux fonctions qui nous permettent de modifier le système de fichiers
+const fs = require('fs');
 
 
 //Contrôleurs pour créer(post), modifier(put), supprimer(delete) et like ou dislike des sauces
