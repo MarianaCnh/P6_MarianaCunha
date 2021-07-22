@@ -1,16 +1,16 @@
-// dotenv pour utiliser les variables d'environnement pour définir la configuration de l'application(mdp, bases de données)
-require('dotenv').config();
 const express = require('express');
 //importation de mongoose
 const mongoose = require('mongoose');
 const path = require('path');
+var helmet = require('helmet');
+var cors = require('cors');
 
 const saucesRoutes = require('./routes/sauces');
 const userRoutes = require('./routes/user');
 
 const app = express();
 
-mongoose.connect('mongodb+srv://user:2306@cluster0.lgu3d.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+mongoose.connect(process.env.DB_CONNEXION,
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
@@ -29,6 +29,8 @@ app.use((req, res, next) => {
   });
 
 app.use(bodyParser.json());
+app.use(helmet());
+
 
 app.use('/images', express.static(path.join(__dirname, 'images')));
 

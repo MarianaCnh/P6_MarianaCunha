@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 
 const User = require('../models/user');
 
+
 //inscription
 exports.singup = (req, res, next) => {
     //fonction pour crypté un mdp
