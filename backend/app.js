@@ -34,7 +34,7 @@ const bodyParser = require('body-parser');
 
 
 
-// CORS bloque les accés malveillant 
+// CORS pour éviter les attaques CSRF
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
