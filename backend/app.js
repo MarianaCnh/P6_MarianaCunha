@@ -44,7 +44,7 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json()); //Transforme le corp de la requête en object Javascript utilisable 
 app.use(helmet());
-app.disable('x-powered-by');
+app.disable('x-powered-by'); // désactive X-Powered-By header
 
 
 app.use('/images', express.static(path.join(__dirname, 'images')));
