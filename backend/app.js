@@ -30,7 +30,7 @@ mongoose.connect(process.env.DB_CONNEXION,
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(() => console.log('Connexion à MongoDB échouée !'));
 
-const bodyParser = require('body-parser');
+// const bodyParser = require('body-parser');
 
 
 
@@ -42,9 +42,9 @@ app.use((req, res, next) => {
     next();
   });
 
-app.use(bodyParser.json()); //Transforme le corp de la requête en object Javascript utilisable 
+app.use(express.json()); //Transforme le corp de la requête en object Javascript utilisable 
 app.use(helmet());
-app.disable('x-powered-by'); // désactive X-Powered-By header
+
 
 
 app.use('/images', express.static(path.join(__dirname, 'images')));

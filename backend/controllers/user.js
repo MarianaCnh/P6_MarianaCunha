@@ -2,10 +2,13 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const User = require('../models/user');
+//plugin pour validé les emails
+var validator = require("email-validator");
 
 
 //inscription
 exports.singup = (req, res, next) => {
+    
     //fonction pour crypté un mdp
     bcrypt.hash(req.body.password, 10)//"saler" le mdp 10 fois, plus ont augmente le chiffre plus cela prendra du temps(pour le hachage du mdp)
     .then(hash => {
@@ -23,7 +26,7 @@ exports.singup = (req, res, next) => {
 };
 
 exports.login = (req, res, next) => {
-    User.findOne({ email: req.body.email })
+    User.findOne({ email: req.body.email})
         .then(user => {
             //Si ont ne trouve pas l'utilisateur ont retourne une erreur car l'utilisateur n'a pas été trouvé
             if (!user) {
