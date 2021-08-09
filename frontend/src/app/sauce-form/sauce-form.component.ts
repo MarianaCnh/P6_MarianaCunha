@@ -53,7 +53,7 @@ export class SauceFormComponent implements OnInit {
 
   initEmptyForm() {
     this.sauceForm = this.formBuilder.group({
-      name: [null, Validators.required,
+      name: [null, Validators.required],
       manufacturer: [null, Validators.required],
       description: [null, Validators.required],
       image: [null, Validators.required],
