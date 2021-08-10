@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Sauce = require('../models/sauce');
+const Sauce = require('../models/sauces');
 const jwt = require('jsonwebtoken');
 
 //Avoir l'id de l'utilisateur qui intéragi avec une sauce pour éviter des actions malveillante venant d'une personne sur POSTMAN par exemple
