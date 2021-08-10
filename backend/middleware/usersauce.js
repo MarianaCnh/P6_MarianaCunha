@@ -10,7 +10,7 @@ module.exports = (req, res, next) => {
         })
         .then((sauce) => {
             const token = req.headers.authorization.split(' ')[1];
-            const decodedToken = jwt.verify(token, process.env.DB_TOKEN);
+            const decodedToken = jwt.verify(token, process.env.TOKEN);
             const tokenUserId = decodedToken.userId;
             if (sauce.userId !== tokenUserId) {
                 throw 'Invalid user ID';
